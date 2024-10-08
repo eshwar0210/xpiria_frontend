@@ -10,10 +10,14 @@ import Placements from './pages/Placements';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
+
+import Footer from './components/Footer';
+
+
 function App() {
   return (
     <Router>
-      <AppBar position="dynamic">
+      <AppBar position="dynamic" sx={{ backgroundColor: '#3f51b5'}}>
         <Toolbar>
           <Button color="inherit" href="/"   sx={{ mr: 70 ,ml : 50 ,fontSize:40   }} >Xpiria</Button> 
           <Button color="inherit" href="/">Home</Button>
@@ -33,7 +37,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
         </Container>
+        
+        <Footer />
     </Router>
+
   );
 }
 
