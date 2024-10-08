@@ -7,7 +7,7 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
-        position: 'fixed',
+        position: 'relative',
         bottom: 0,
         mt: 'auto',
         width  : '100%' ,
@@ -22,7 +22,7 @@ const Footer = () => {
         © {new Date().getFullYear()} Xpiria. All rights reserved.
       </Typography>
       <Typography variant="body2" sx={{marginTop  : '5px'}}>
-        Designed by Eshwar
+        Designed with <span role="img" aria-label="heart">❤️</span> by Eshwar
       </Typography>
     </Box>
   );
