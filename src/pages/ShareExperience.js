@@ -13,6 +13,9 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 
 const ShareExperienceForm = () => {
+
+  const [resetKey, setResetKey] = useState(0);
+
   const [name, setName] = useState('');
   const [college, setCollege] = useState('');
   const [branch, setBranch] = useState('');
@@ -56,7 +59,8 @@ const ShareExperienceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+      console.log(company);
     // Prepare student data
     const studentData = {
       name,
@@ -75,38 +79,74 @@ const ShareExperienceForm = () => {
       preparation_strategy: preparationStrategy,
       resources,
     };
-
+  
     try {
       // First, create the student
-      const studentResponse = await axios.post('/api/students', studentData);
+      const studentResponse = await axios.post('http://localhost:5000/student/', studentData);
       const studentId = studentResponse.data._id;
+  
+      // Check if the company exists based on name and type
+      const existingCompanyResponse = await axios.get(`http://localhost:5000/company/search?name=${company.name}&type=${type}`);
+     
+      //  This is made clear by studying response headers of get
+      const existingCompany = existingCompanyResponse.data;
 
-      // Now check if the company exists
-      if (company) {
+      console.log(existingCompany);
+      
+      if (existingCompany._id!=null) {
         // If company exists, add the student to the company's student list
-        await axios.post(`/api/companies/${company._id}/addStudent`, { studentId });
+        await axios.post(`http://localhost:5000/company/${existingCompany._id}/addStudent`, { studentId });
       } else {
         // If company doesn't exist, create the company and add the student
         const companyData = {
           name: company.name,
-          logo_url: company.logo_url,
+          logo_url: company.icon || '/company-logo-default.png', // Use default logo if not available
           students: [studentId],
           type,
         };
-        await axios.post('/api/companies', companyData);
+        await axios.post('http://localhost:5000/company/', companyData);
       }
-
-      // Optionally, reset form fields here
+      resetForm();
+  
     } catch (error) {
       console.error('Error submitting experience:', error);
     }
+
+
   };
+
+  // Reset form function
+const resetForm = () => {
+  setName('');
+  setCollege('');
+  setBranch('');
+  setInternshipSession('');
+  setOfferObtained('');
+  setRoleDescription('');
+  setInternLocation('');
+  setEligibleBranches('');
+  setEligibilityCriteria('');
+  setSelectionProcedure('');
+  setOnlineTestDescription('');
+  setTechnicalInterviewDescription('');
+  setHrRoundDescription('');
+  setPreparationStrategy('');
+  setResources('');
+  setType('intern');
+  setResetKey(prevKey => prevKey + 1); // Increment key
+  setCompany(null);
+  setOptions([]); // Reset company options too
+};
+
+
+  
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4 }}>
       <Typography variant="h5">Share Your Experience</Typography>
 
       <Autocomplete
+        key={resetKey}
         options={options}
         getOptionLabel={(option) => option.name}
         onChange={(event, value) => setCompany(value)}
