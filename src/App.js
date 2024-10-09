@@ -28,7 +28,7 @@ function App() {
     { label: 'Home', path: '/' },
     { label: 'Internships', path: '/internships' },
     { label: 'Placements', path: '/placements' },
-    { label: 'About', path: '/about' },
+    { label: 'About Us', path: '/about' },
     { label: 'Contact', path: '/contact' },
   ];
 

@@ -17,7 +17,8 @@ const StudentCard = () => {
                 // dollar symbol don't forget this
 
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
+                
                 setStudent(data);
                 setLoading(false);
             } catch (error) {
@@ -46,7 +47,7 @@ const StudentCard = () => {
                     <strong>Internship Session:</strong> {student.internship_session}
                 </Typography>
                 <Typography variant="body1">
-                    <strong>Role Obtained:</strong> {student.offer_obtained}
+                    <strong>Offer Verdict:</strong> {student.offer_obtained}
                 </Typography>
                 <Typography variant="body1">
                     <strong>Intern Location:</strong> {student.intern_location}
