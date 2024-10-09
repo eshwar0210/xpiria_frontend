@@ -143,7 +143,15 @@ const resetForm = () => {
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4 }}>
-      <Typography variant="h5">Share Your Experience</Typography>
+      <Typography variant="h5" 
+      sx={{ 
+        color: '#D32F2F', 
+        fontWeight: 'bold',        // Makes the text bold
+        textAlign: 'center',      // Centers the text
+        letterSpacing: '0.5px',   // Adds space between letters
+        textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)', // Adds a subtle shadow for depth
+        mb: 2,                    // Adds some margin at the bottom
+    }}>Share Your Experience</Typography>
 
       <Autocomplete
         key={resetKey}
@@ -190,7 +198,7 @@ const resetForm = () => {
         sx={{ mt: 2 }}
       />
       <TextField
-        label="Internship Session"
+        label="Session"
         variant="outlined"
         required
         fullWidth
@@ -199,7 +207,7 @@ const resetForm = () => {
         sx={{ mt: 2 }}
       />
       <TextField
-        label="Offer Obtained"
+        label="Offer Verdict"
         variant="outlined"
         required
         fullWidth
@@ -217,7 +225,7 @@ const resetForm = () => {
         sx={{ mt: 2 }}
       />
       <TextField
-        label="Intern Location"
+        label="Location"
         variant="outlined"
         required
         fullWidth
@@ -307,11 +315,19 @@ const resetForm = () => {
       />
 
       <RadioGroup row value={type} onChange={(e) => setType(e.target.value)}>
-        <FormControlLabel value="intern" control={<Radio />} label="Intern" />
-        <FormControlLabel value="placement" control={<Radio />} label="Placement" />
-      </RadioGroup>
+      <FormControlLabel 
+          value="intern" 
+          control={<Radio sx={{ color: '#D32F2F', '&.Mui-checked': { color: '#D32F2F' } }} />} 
+          label="Intern" 
+      />
+      <FormControlLabel 
+          value="placement" 
+          control={<Radio sx={{ color: '#D32F2F', '&.Mui-checked': { color: '#D32F2F' } }} />} 
+          label="Placement" 
+      />
+  </RadioGroup>
 
-      <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+      <Button type="submit" variant="contained" sx={{ my: 2,  width : '100%' , backgroundColor : '#D32F2F'}}>
         Submit Experience
       </Button>
     </Box>

@@ -30,7 +30,7 @@ function App() {
     { label: 'Home', path: '/' },
     { label: 'Internships', path: '/internships' },
     { label: 'Placements', path: '/placements' },
-    { label: 'About Us', path: '/about' },
+    { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
     { label: 'EXPRESS', path: '/share-experience', icon: <ForumIcon /> }
   ];
@@ -39,8 +39,8 @@ function App() {
     <Router>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         {/* AppBar for the Navbar */}
-        <AppBar position="static" sx={{ backgroundColor: '#D32F2F' }}>
-          <Toolbar>
+        <AppBar position="static" sx={{ backgroundColor: '#D32F2F'  }}>
+          <Toolbar sx={{ paddingY: 4 }}>
             {/* Hamburger icon for mobile */}
             <IconButton
               edge="start"
