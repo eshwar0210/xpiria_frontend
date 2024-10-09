@@ -34,9 +34,7 @@ const CompanyDetail = () => {
 
   return (
     <Box sx={{ my: 5, padding: '20px', backgroundColor: '#0000', width: '100%' }}>
-      <Typography variant="h4" sx={{ mb: 4, textAlign: 'center' }}>
-        {companyName} - Internship Students
-      </Typography>
+     
       <Grid container spacing={4}>
         {students.map((student, index) => (
 
