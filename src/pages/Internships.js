@@ -28,7 +28,7 @@ const Internships = () => {
     sx={{
       gutterBottom: true,
       fontWeight: 'bold',
-      color: '#3f51b5', // Change this to your desired color
+      color: '#D32F2F', // Change this to your desired color
       textAlign: 'center',
       letterSpacing: '0.5px',
       textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)', // Optional shadow for depth
@@ -70,7 +70,7 @@ const Internships = () => {
                   {company.name}
                 </Typography>
                 <Link to={`/company/${company._id}`} style={{ textDecoration: 'none' }}>
-                <Button variant="contained" sx={{ mt: 2, backgroundColor: "#3f51b5" }}>
+                <Button variant="contained" sx={{ mt: 2, backgroundColor: "#D32F2F" }}>
                   View Experiences
                 </Button>
                 </Link>

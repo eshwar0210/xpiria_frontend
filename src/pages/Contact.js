@@ -66,7 +66,7 @@ const ContactUs = () => {
       }}
     >
       <Typography variant="h4" sx={{ textAlign: 'center', mb: 2 }}>
-        Get in <span style={{ color: '#3f51b5' }}>touch</span>
+        Get in <span style={{ color: '#D32F2F' }}>touch</span>
       </Typography>
       <Typography variant="body1" sx={{ textAlign: 'center', mb: 4 }}>
         Please fill out the form below to report a bug, share your experience, or ask any questions.
@@ -127,7 +127,7 @@ const ContactUs = () => {
         type="submit"
         variant="contained"
         sx={{
-          backgroundColor: '#3f51b5',
+          backgroundColor: '#D32F2F',
           color: 'white',
           '&:hover': { backgroundColor: '#3f51b5' },
           mt: 2,
