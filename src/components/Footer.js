@@ -22,7 +22,7 @@ const Footer = () => {
         © {new Date().getFullYear()} Xpiria. All rights reserved.
       </Typography>
       <Typography variant="body2" sx={{marginTop  : '5px'}}>
-        Designed with <span role="img" aria-label="heart">❤️</span> by Eshwar
+        Designed with <span role="img" aria-label="heart"> 🤍</span> by Eshwar
       </Typography>
     </Box>
   );

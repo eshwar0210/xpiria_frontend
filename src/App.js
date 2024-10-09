@@ -11,6 +11,8 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import CompanyDetail from './pages/CompanyDetail';
 import StudentCard from './pages/StudentCard';
+import FeedbackIcon from '@mui/icons-material/Feedback';
+import ShareExperience from './pages/ShareExperience';
 
 function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -30,6 +32,7 @@ function App() {
     { label: 'Placements', path: '/placements' },
     { label: 'About Us', path: '/about' },
     { label: 'Contact', path: '/contact' },
+    { label: 'EXPRESS', path: '/share-experience', icon: <FeedbackIcon /> }
   ];
 
   return (
@@ -84,7 +87,8 @@ function App() {
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               {menuItems.map((item, index) => (
                 <Button color="inherit" href={item.path} sx={{ fontSize: 18, px: 3 }} key={index}>
-                  {item.label}
+                {item.icon} 
+                  { item.label}
                 </Button>
               ))}
             </Box>
@@ -101,6 +105,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/company/:id" element={<CompanyDetail />} />
             <Route path="/student/:id" element={<StudentCard />} />
+            <Route path="/share-experience" element={<ShareExperience />} /> 
           </Routes>
         </Container>
 
