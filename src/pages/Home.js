@@ -33,7 +33,7 @@ const Home = () => {
       <img 
         src="Placements.jpg" 
         alt="Placement_logo" 
-        style={{ width: '100%', maxHeight: '800px', objectFit: 'contain' }} 
+        style={{ width: '100%', maxHeight: '540px', objectFit: 'contain' }} 
       />
 
       {/* Statement Section */}
@@ -54,7 +54,7 @@ const Home = () => {
           sx={{ 
             fontWeight: 'bold', 
             fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }, 
-            color: '#3f51b5',
+            color: '#D32F2F',
             textAlign: 'center',
             textDecoration: strike ? 'line-through' : 'none',
             transition: 'text-decoration 0.5s ease-in-out'

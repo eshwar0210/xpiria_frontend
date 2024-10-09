@@ -36,7 +36,7 @@ function App() {
     <Router>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         {/* AppBar for the Navbar */}
-        <AppBar position="static" sx={{ backgroundColor: '#3f51b5' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#D32F2F' }}>
           <Toolbar>
             {/* Hamburger icon for mobile */}
             <IconButton

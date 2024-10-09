@@ -13,7 +13,7 @@ const Footer = () => {
         width  : '100%' ,
         py: 2,
         textAlign: 'center',
-        backgroundColor: '#3f51b5',
+        backgroundColor: '#D32F2F',
         color: 'white',
         height : '80px',
       }}
