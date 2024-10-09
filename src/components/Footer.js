@@ -15,10 +15,10 @@ const Footer = () => {
         textAlign: 'center',
         backgroundColor: '#D32F2F',
         color: 'white',
-        height: '100px',
+        height: '120px',
       }}
     >
-      <Typography variant="body2" sx={{ marginTop: '10px' }}>
+      <Typography variant="body2" sx={{ marginTop: '15px' }}>
         © {new Date().getFullYear()} Xpiria. All rights reserved.
       </Typography>
       <Typography variant="body2" sx={{ marginTop: '5px' }}>
