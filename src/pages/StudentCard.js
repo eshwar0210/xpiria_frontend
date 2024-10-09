@@ -14,7 +14,7 @@ const StudentCard = () => {
     useEffect(() => {
         const fetchStudent = async () => {
             try {
-                const response = await fetch(`${BASE_URL}/${id}`);
+                const response = await fetch(`${BASE_URL}/student/${id}`);
                 // dollar symbol don't forget this
 
                 const data = await response.json();
