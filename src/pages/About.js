@@ -22,18 +22,7 @@ const AboutUs = () => {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography
-            variant="h8"
-            sx={{
-              fontWeight: 'italic',
-              fontSize: { xs: '1.8rem', sm: '2.5rem' }, // Responsive font size
-              letterSpacing: '1px',
-              color: '#D32F2F',
-              mb: 5,
-            }}
-          >
-            Meet the Developer
-          </Typography>
+       
           <Typography
             variant="h3"
             sx={{
