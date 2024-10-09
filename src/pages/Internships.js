@@ -1,7 +1,7 @@
-// src/pages/Internships.js
 import React, { useEffect, useState } from 'react';
 import { Typography, Grid, Box, Card, CardMedia, CardContent, Button } from '@mui/material';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Internships = () => {
   const [companies, setCompanies] = useState([]);
@@ -41,6 +41,7 @@ const Internships = () => {
       <Grid container spacing={4} justifyContent="center" >
         {companies.filter(company => company.type === 'intern').map((company) => (
           <Grid item xs={12} sm={6} md={4} key={company._id}>
+          
             <Card sx={{
               boxShadow: 3,
               border: '1px solid',
@@ -68,9 +69,11 @@ const Internships = () => {
                 <Typography variant="h5" component="div">
                   {company.name}
                 </Typography>
+                <Link to={`/company/${company._id}`} style={{ textDecoration: 'none' }}>
                 <Button variant="contained" sx={{ mt: 2, backgroundColor: "#3f51b5" }}>
                   View Experiences
                 </Button>
+                </Link>
               </CardContent>
             </Card>
           </Grid>

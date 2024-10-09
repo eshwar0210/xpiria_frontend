@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AppBar, Toolbar, Button, Container, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, Container, Box, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import Home from './pages/Home';
 import Internships from './pages/Internships';
@@ -8,52 +9,89 @@ import Placements from './pages/Placements';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
+import CompanyDetail from './pages/CompanyDetail';
+import StudentCard from './pages/StudentCard';
 
 function App() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // Handle drawer opening and closing
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setDrawerOpen(open);
+  };
+
+  // Menu items
+  const menuItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Internships', path: '/internships' },
+    { label: 'Placements', path: '/placements' },
+    { label: 'About', path: '/about' },
+    { label: 'Contact', path: '/contact' },
+  ];
+
   return (
     <Router>
-      <Box 
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh', 
-        }}
-      >
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        {/* AppBar for the Navbar */}
         <AppBar position="static" sx={{ backgroundColor: '#3f51b5' }}>
           <Toolbar>
-            <Button color="inherit" href="/" sx={{ mr: 60, ml: 30, fontSize: 60 ,fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-  }}>
+            {/* Hamburger icon for mobile */}
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2, display: { xs: 'block', md: 'none' } }}
+              onClick={toggleDrawer(true)}
+            >
+              <MenuIcon />
+            </IconButton>
+
+            {/* Drawer for small screens */}
+            <Drawer
+              anchor="left"
+              open={drawerOpen}
+              onClose={toggleDrawer(false)}
+            >
+              <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+                <List>
+                  {menuItems.map((item, index) => (
+                    <ListItem button component="a" href={item.path} key={index}>
+                      <ListItemText primary={item.label} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            </Drawer>
+
+            {/* Logo button (remains visible on all screen sizes) */}
+            <Button
+              color="inherit"
+              href="/"
+              sx={{
+                flexGrow: 1,
+                fontSize: 24,
+                fontFamily: 'Arial, sans-serif',
+                display: { xs: 'block', md: 'block' },
+              }}
+            >
               Xpiria
-            </Button> 
-            <Button color="inherit" href="/" sx={{ fontSize: 20, px: 3 }}>
-              Home
             </Button>
-            <Button color="inherit" href="/internships" sx={{ fontSize: 20, px: 3 }}>
-              Internships
-            </Button>
-            <Button color="inherit" href="/placements" sx={{ fontSize: 20, px: 3 }}>
-              Placements
-            </Button>
-            <Button color="inherit" href="/about" sx={{ px: 3, fontSize: 20 }}>
-              About
-            </Button>
-            <Button color="inherit" href="/contact" sx={{ px: 3, fontSize: 20 }}>
-              Contact
-            </Button>
+
+            {/* Navbar buttons (hidden on small screens) */}
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              {menuItems.map((item, index) => (
+                <Button color="inherit" href={item.path} sx={{ fontSize: 18, px: 3 }} key={index}>
+                  {item.label}
+                </Button>
+              ))}
+            </Box>
           </Toolbar>
         </AppBar>
-        
+
+        {/* Main container */}
         <Container sx={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -61,9 +99,12 @@ function App() {
             <Route path="/placements" element={<Placements />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/company/:id" element={<CompanyDetail />} />
+            <Route path="/student/:id" element={<StudentCard />} />
           </Routes>
         </Container>
-        
+
+        {/* Footer */}
         <Footer />
       </Box>
     </Router>
