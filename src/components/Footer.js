@@ -10,19 +10,27 @@ const Footer = () => {
         position: 'relative',
         bottom: 0,
         mt: 'auto',
-        width  : '100%' ,
+        width: '100%',
         py: 2,
         textAlign: 'center',
         backgroundColor: '#D32F2F',
         color: 'white',
-        height : '80px',
+        height: '100px',
       }}
     >
-      <Typography variant="body2" sx={{marginTop  : '10px'}}>
+      <Typography variant="body2" sx={{ marginTop: '10px' }}>
         © {new Date().getFullYear()} Xpiria. All rights reserved.
       </Typography>
-      <Typography variant="body2" sx={{marginTop  : '5px'}}>
-        Designed with <span role="img" aria-label="heart"> 🤍</span> by Eshwar
+      <Typography variant="body2" sx={{ marginTop: '5px' }}>
+        Designed with <span role="img" aria-label="heart">🤍</span> by Eshwar
+      </Typography>
+      <Typography variant="body2" sx={{ marginTop: '5px', fontSize: '14px' }}>
+        <a href="https://brandfetch.com" style={{ color: 'white', textDecoration: 'underline' }}>
+          Logos by Brandfetch
+        </a>
+      </Typography>
+      <Typography variant="body2" sx={{ marginTop: '5px', fontSize: '14px' }}>
+        Special thanks to Brandfetch 🌟
       </Typography>
     </Box>
   );

@@ -3,11 +3,11 @@ import { Typography, Grid, Box, Card, CardMedia, CardContent, Button } from '@mu
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-
 const Internships = () => {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
+    // Fetch companies from the backend API
     const fetchCompanies = async () => {
       try {
         const response = await axios.get('http://localhost:5000/company'); // Update with your backend URL
@@ -22,23 +22,22 @@ const Internships = () => {
 
   return (
     <Box sx={{ my: 5, textAlign: 'center' }}>
-    <Typography
-    variant="h4"
-    component="h1"
-    sx={{
-      gutterBottom: true,
-      fontWeight: 'bold',
-      color: '#D32F2F', // Change this to your desired color
-      textAlign: 'center',
-      letterSpacing: '0.5px',
-      textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)', // Optional shadow for depth
-      mb: 4 // Adjust margin bottom for spacing
-    }}
-  >
-    Placement Experiences by Company
-  </Typography>
+      <Typography
+        variant="h4"
+        component="h1"
+        sx={{
+          gutterBottom: true,
+          fontWeight: 'bold',
+          color: '#D32F2F',
+          letterSpacing: '0.5px',
+          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
+          mb: 4
+        }}
+      >
+        Placement Experiences by Company
+      </Typography>
   
-      <Grid container spacing={4} justifyContent="center" >
+      <Grid container spacing={4} justifyContent="center">
         {companies.filter(company => company.type === 'placement').map((company) => (
           <Grid item xs={12} sm={6} md={4} key={company._id}>
             <Card sx={{
@@ -54,24 +53,24 @@ const Internships = () => {
             }}>
               <CardMedia
                 component="img"
-                height="140"
+                height="40"  // Smaller height for the logo
                 image={company.logo_url}
                 alt={company.name}
                 sx={{
                   objectFit: 'contain',
-                  width: '75%',
+                  width: '50%',  // Adjusted width for a better fit
                   margin: '0 auto',
-
+                  padding: '10px 0'  // Added padding for spacing
                 }}
               />
               <CardContent>
-                <Typography variant="h5" component="div">
+                <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
                   {company.name}
                 </Typography>
                 <Link to={`/company/${company._id}`} style={{ textDecoration: 'none' }}>
-                <Button variant="contained" sx={{ mt: 2, backgroundColor: "#D32F2F" }}>
-                  View Experiences
-                </Button>
+                  <Button variant="contained" sx={{ mt: 2, backgroundColor: "#D32F2F" }}>
+                    View Experiences
+                  </Button>
                 </Link>
               </CardContent>
             </Card>
