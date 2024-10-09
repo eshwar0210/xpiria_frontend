@@ -11,7 +11,7 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import CompanyDetail from './pages/CompanyDetail';
 import StudentCard from './pages/StudentCard';
-import FeedbackIcon from '@mui/icons-material/Feedback';
+import ForumIcon from '@mui/icons-material/Forum';
 import ShareExperience from './pages/ShareExperience';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
     { label: 'Placements', path: '/placements' },
     { label: 'About Us', path: '/about' },
     { label: 'Contact', path: '/contact' },
-    { label: 'EXPRESS', path: '/share-experience', icon: <FeedbackIcon /> }
+    { label: 'EXPRESS', path: '/share-experience', icon: <ForumIcon /> }
   ];
 
   return (
