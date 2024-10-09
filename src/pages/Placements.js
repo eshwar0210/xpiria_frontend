@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Typography, Grid, Box, Card, CardMedia, CardContent, Button } from '@mui/material';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import BASE_URL from '../config';
 
 const Internships = () => {
   const [companies, setCompanies] = useState([]);
@@ -10,7 +11,7 @@ const Internships = () => {
     // Fetch companies from the backend API
     const fetchCompanies = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/company'); // Update with your backend URL
+        const response = await axios.get(`${BASE_URL}/company`); // Update with your backend URL
         setCompanies(response.data);
       } catch (error) {
         console.error("Error fetching companies:", error);

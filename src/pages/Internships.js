@@ -3,14 +3,16 @@ import { Typography, Grid, Box, Card, CardMedia, CardContent, Button } from '@mu
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 const Internships = () => {
   const [companies, setCompanies] = useState([]);
-
   useEffect(() => {
     // Fetch companies from the backend API
     const fetchCompanies = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/company'); // Update with your backend URL
+        const response = await axios.get(`${BASE_URL}/company`); // Update with your backend URL
         setCompanies(response.data);
       } catch (error) {
         console.error("Error fetching companies:", error);

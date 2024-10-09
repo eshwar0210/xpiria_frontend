@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Card, CardContent, CircularProgress } from '@mui/material';
 import { useParams } from 'react-router-dom'; 
+import BASE_URL from '../config';
 
 const StudentCard = () => {
 
@@ -13,7 +14,7 @@ const StudentCard = () => {
     useEffect(() => {
         const fetchStudent = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/student/${id}`);
+                const response = await fetch(`${BASE_URL}/${id}`);
                 // dollar symbol don't forget this
 
                 const data = await response.json();

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography, Card, CardContent, CardMedia, Grid, Button } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const CompanyDetail = () => {
     const { id } = useParams(); // Get the company ID from the URL
@@ -13,7 +14,7 @@ const CompanyDetail = () => {
 
     useEffect(() => {
         const fetchCompanyData = async () => {
-            const response = await fetch(`http://localhost:5000/company/${id}`);
+            const response = await fetch(`${BASE_URL}/company/${id}`);
             const data = await response.json();
             setCompanyName(data.name);
             setStudents(data.students);

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, Grid } from '@mui/material';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const ContactUs = () => {
   // State variables for form inputs and validation
   const [firstName, setFirstName] = useState('');
@@ -29,7 +31,7 @@ const ContactUs = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/contact', {
+      const response = await fetch(`${BASE_URL}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -11,6 +11,7 @@ import {
 import Autocomplete from '@mui/material/Autocomplete';
 
 import axios from 'axios';
+import BASE_URL from '../config';
 
 const ShareExperienceForm = () => {
 
@@ -82,11 +83,11 @@ const ShareExperienceForm = () => {
   
     try {
       // First, create the student
-      const studentResponse = await axios.post('http://localhost:5000/student/', studentData);
+      const studentResponse = await axios.post(`${BASE_URL}/student/`, studentData);
       const studentId = studentResponse.data._id;
   
       // Check if the company exists based on name and type
-      const existingCompanyResponse = await axios.get(`http://localhost:5000/company/search?name=${company.name}&type=${type}`);
+      const existingCompanyResponse = await axios.get(`${BASE_URL}/company/search?name=${company.name}&type=${type}`);
      
       //  This is made clear by studying response headers of get
       const existingCompany = existingCompanyResponse.data;
@@ -95,7 +96,7 @@ const ShareExperienceForm = () => {
       
       if (existingCompany._id!=null) {
         // If company exists, add the student to the company's student list
-        await axios.post(`http://localhost:5000/company/${existingCompany._id}/addStudent`, { studentId });
+        await axios.post(`${BASE_URL}/company/${existingCompany._id}/addStudent`, { studentId });
       } else {
         // If company doesn't exist, create the company and add the student
         const companyData = {
@@ -104,7 +105,7 @@ const ShareExperienceForm = () => {
           students: [studentId],
           type,
         };
-        await axios.post('http://localhost:5000/company/', companyData);
+        await axios.post(`${BASE_URL}/company/`, companyData);
       }
       resetForm();
   
