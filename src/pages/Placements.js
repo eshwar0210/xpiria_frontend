@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Grid, Box, Card, CardMedia, CardContent, Button } from '@mui/material';
+import { Typography, Grid, Box, Card, CardMedia, CardContent, Button , CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import BASE_URL from '../config';
 
 const Internships = () => {
   const [companies, setCompanies] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     // Fetch companies from the backend API
     const fetchCompanies = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/company`); // Update with your backend URL
         setCompanies(response.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching companies:", error);
       }
@@ -21,6 +22,21 @@ const Internships = () => {
     fetchCompanies();
   }, []);
 
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '80vh' // Full viewport height to center vertically
+        }}
+      >
+        <CircularProgress sx={{ color: '#D32F2F' }} />
+      </Box>
+    );
+  }
+  
   return (
     <Box sx={{ my: 5, textAlign: 'center' }}>
       <Typography

@@ -31,7 +31,18 @@ const StudentCard = () => {
     }, [id]);
 
     if (loading) {
-        return <CircularProgress />;
+        return (
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '80vh' // Full viewport height to center vertically
+                }}
+            >
+                <CircularProgress  sx={{ color: '#D32F2F' }} />
+            </Box>
+        );
     }
 
     return (

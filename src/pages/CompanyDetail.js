@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Card, CardContent, CardMedia, Grid, Button } from '@mui/material';
+import { Box, Typography, Card, CardContent, CardMedia, Grid, Button , CircularProgress} from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -10,6 +10,7 @@ const CompanyDetail = () => {
     const [students, setStudents] = useState([]);
     const [companyName, setCompanyName] = useState('');
     const [companyLogo, setCompanyLogo] = useState('');
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const CompanyDetail = () => {
             setCompanyName(data.name);
             setStudents(data.students);
             setCompanyLogo(data.logo_url); // Assuming logo URL is part of the company data
+            setLoading(false);
         };
 
         fetchCompanyData();
@@ -30,7 +32,20 @@ const CompanyDetail = () => {
     };
 
 
-
+    if (loading) {
+        return (
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '80vh' // Full viewport height to center vertically
+                }}
+            >
+                <CircularProgress  sx={{ color: '#D32F2F' }} />
+            </Box>
+        );
+    }
 
 
     return (
