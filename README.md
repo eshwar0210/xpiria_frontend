@@ -1,3 +1,10 @@
+## Important details
+
+As of now mongodb schema and backend code is still private.
+Contact me if you are interested in learning more about this project. (Linkedin preferred)
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -29,7 +36,5 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-## Other details
 
-As of now backend mongodb schema and backend code is still private.
 
