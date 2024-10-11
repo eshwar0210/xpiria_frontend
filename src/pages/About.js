@@ -1,28 +1,56 @@
-import React from 'react';
-import { Box, Typography, Grid, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, Grid, Button, CircularProgress } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const AboutUs = () => {
+  const [loading, setLoading] = useState(true); // Track image loading state
+  const [error, setError] = useState(false); // Track image error state
+
+  const handleImageLoad = () => {
+    // setLoading(false);
+  };
+
+  const handleImageError = () => {
+    setLoading(false);
+    setError(true);
+  };
+
   return (
     <Box sx={{ my: 5, textAlign: 'center', padding: '20px', backgroundColor: '#00000' }}>
       <Grid container justifyContent="center" alignItems="center" spacing={4}>
         <Grid item xs={12} sm={6}>
-          <Box
-            component="img"
-            src="Eshwar.jpg"
-            alt="Eshwar Rachakonda"
-            sx={{
-              borderRadius: '50%',
-              width: { xs: '250px', sm: '350px', md: '460px' }, // Responsive width
-              height: { xs: '250px', sm: '350px', md: '460px' }, // Responsive height
-              boxShadow: 3,
-              mb: 3,
-            }}
-          />
+          <Box sx={{ position: 'relative', display: 'inline-block' }}>
+            {loading && (
+              <CircularProgress
+                sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'  , color : '#D32F2F'}}
+              />
+            )}
+            {error ? (
+              <Typography variant="body1" color="error">
+                Failed to load image
+              </Typography>
+            ) : (
+              <Box
+                component="img"
+                src="Eshwar.jpg"
+                alt="Eshwar Rachakonda"
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                sx={{
+                  display: loading ? 'none' : 'block', // Hide image while loading
+                  borderRadius: '50%',
+                  width: { xs: '250px', sm: '350px', md: '460px' }, // Responsive width
+                  height: { xs: '250px', sm: '350px', md: '460px' }, // Responsive height
+                  boxShadow: 3,
+                  mb: 3,
+                }}
+              />
+            )}
+          </Box>
         </Grid>
+
         <Grid item xs={12} sm={6}>
-       
           <Typography
             variant="h3"
             sx={{
