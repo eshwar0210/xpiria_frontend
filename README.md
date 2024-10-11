@@ -1,6 +1,9 @@
+## Important details
+
+As of now mongodb schema and backend code is still private.
+Contact me if you are interested in learning more about this project. (Linkedin preferred)
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -13,7 +16,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
 
 
 ### `npm run build`
@@ -33,4 +35,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
 
