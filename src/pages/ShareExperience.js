@@ -10,13 +10,14 @@ import {
 } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BASE_URL from '../config';
 
 const ShareExperienceForm = () => {
 
   const [resetKey, setResetKey] = useState(0);
-
+  const navigate = useNavigate(); 
   const [name, setName] = useState('');
   const [college, setCollege] = useState('');
   const [branch, setBranch] = useState('');
@@ -60,8 +61,6 @@ const ShareExperienceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-      console.log(company);
     // Prepare student data
     const studentData = {
       name,
@@ -80,21 +79,20 @@ const ShareExperienceForm = () => {
       preparation_strategy: preparationStrategy,
       resources,
     };
-  
+
     try {
       // First, create the student
       const studentResponse = await axios.post(`${BASE_URL}/student/`, studentData);
       const studentId = studentResponse.data._id;
-  
+
       // Check if the company exists based on name and type
       const existingCompanyResponse = await axios.get(`${BASE_URL}/company/search?name=${company.name}&type=${type}`);
-     
+
       //  This is made clear by studying response headers of get
       const existingCompany = existingCompanyResponse.data;
 
-      console.log(existingCompany);
-      
-      if (existingCompany._id!=null) {
+
+      if (existingCompany._id != null) {
         // If company exists, add the student to the company's student list
         await axios.post(`${BASE_URL}/company/${existingCompany._id}/addStudent`, { studentId });
       } else {
@@ -108,8 +106,10 @@ const ShareExperienceForm = () => {
         await axios.post(`${BASE_URL}/company/`, companyData);
       }
       resetForm();
-  
+      navigate(`/student/${studentId}`);
+
     } catch (error) {
+      alert('There was an error submitting the experience. Please try again.');
       console.error('Error submitting experience:', error);
     }
 
@@ -117,42 +117,42 @@ const ShareExperienceForm = () => {
   };
 
   // Reset form function
-const resetForm = () => {
-  setName('');
-  setCollege('');
-  setBranch('');
-  setInternshipSession('');
-  setOfferObtained('');
-  setRoleDescription('');
-  setInternLocation('');
-  setEligibleBranches('');
-  setEligibilityCriteria('');
-  setSelectionProcedure('');
-  setOnlineTestDescription('');
-  setTechnicalInterviewDescription('');
-  setHrRoundDescription('');
-  setPreparationStrategy('');
-  setResources('');
-  setType('intern');
-  setResetKey(prevKey => prevKey + 1); // Increment key
-  setCompany(null);
-  setOptions([]); // Reset company options too
-};
+  const resetForm = () => {
+    setName('');
+    setCollege('');
+    setBranch('');
+    setInternshipSession('');
+    setOfferObtained('');
+    setRoleDescription('');
+    setInternLocation('');
+    setEligibleBranches('');
+    setEligibilityCriteria('');
+    setSelectionProcedure('');
+    setOnlineTestDescription('');
+    setTechnicalInterviewDescription('');
+    setHrRoundDescription('');
+    setPreparationStrategy('');
+    setResources('');
+    setType('intern');
+    setResetKey(prevKey => prevKey + 1); // Increment key
+    setCompany(null);
+    setOptions([]); // Reset company options too
+  };
 
 
-  
+
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4 }}>
-      <Typography variant="h5" 
-      sx={{ 
-        color: '#D32F2F', 
-        fontWeight: 'bold',        // Makes the text bold
-        textAlign: 'center',      // Centers the text
-        letterSpacing: '0.5px',   // Adds space between letters
-        textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)', // Adds a subtle shadow for depth
-        mb: 2,                    // Adds some margin at the bottom
-    }}>Share Your Experience</Typography>
+      <Typography variant="h5"
+        sx={{
+          color: '#D32F2F',
+          fontWeight: 'bold',        // Makes the text bold
+          textAlign: 'center',      // Centers the text
+          letterSpacing: '0.5px',   // Adds space between letters
+          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)', // Adds a subtle shadow for depth
+          mb: 2,                    // Adds some margin at the bottom
+        }}>Share Your Experience</Typography>
 
       <Autocomplete
         key={resetKey}
@@ -316,19 +316,19 @@ const resetForm = () => {
       />
 
       <RadioGroup row value={type} onChange={(e) => setType(e.target.value)}>
-      <FormControlLabel 
-          value="intern" 
-          control={<Radio sx={{ color: '#D32F2F', '&.Mui-checked': { color: '#D32F2F' } }} />} 
-          label="Intern" 
-      />
-      <FormControlLabel 
-          value="placement" 
-          control={<Radio sx={{ color: '#D32F2F', '&.Mui-checked': { color: '#D32F2F' } }} />} 
-          label="Placement" 
-      />
-  </RadioGroup>
+        <FormControlLabel
+          value="intern"
+          control={<Radio sx={{ color: '#D32F2F', '&.Mui-checked': { color: '#D32F2F' } }} />}
+          label="Intern"
+        />
+        <FormControlLabel
+          value="placement"
+          control={<Radio sx={{ color: '#D32F2F', '&.Mui-checked': { color: '#D32F2F' } }} />}
+          label="Placement"
+        />
+      </RadioGroup>
 
-      <Button type="submit" variant="contained" sx={{ my: 2,  width : '100%' , backgroundColor : '#D32F2F'}}>
+      <Button type="submit" variant="contained" sx={{ my: 2, width: '100%', backgroundColor: '#D32F2F' }}>
         Submit Experience
       </Button>
     </Box>
