@@ -8,12 +8,12 @@ const AboutUs = () => {
   const [error, setError] = useState(false); // Track image error state
 
   const handleImageLoad = () => {
-    // setLoading(false);
+    setLoading(false); // Set loading to false when image has loaded
   };
 
   const handleImageError = () => {
     setLoading(false);
-    setError(true);
+    setError(true); // Set error to true if the image fails to load
   };
 
   return (
@@ -23,7 +23,13 @@ const AboutUs = () => {
           <Box sx={{ position: 'relative', display: 'inline-block' }}>
             {loading && (
               <CircularProgress
-                sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'  , color : '#D32F2F'}}
+                sx={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  color: '#D32F2F',
+                }}
               />
             )}
             {error ? (
@@ -33,7 +39,7 @@ const AboutUs = () => {
             ) : (
               <Box
                 component="img"
-                src="Eshwar.jpg"
+                src="Eshwar.jpg" // Ensure the image path is correct
                 alt="Eshwar Rachakonda"
                 onLoad={handleImageLoad}
                 onError={handleImageError}
